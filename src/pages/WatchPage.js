@@ -3,7 +3,14 @@ import React from 'react';
 function WatchPage() {
     return (
         <div>
-            <h2>Stocks Watch Page</h2>
+            <h2>Stocks Watch</h2>
+            <center>
+            <label>Add Stock:</label><select>
+            <option>MSFT</option>
+            <option>META</option>
+            <option>GOOG</option>
+            </select>
+            </center>
             <table>
                 <tr>
                 <th>Name</th>

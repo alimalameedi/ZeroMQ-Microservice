@@ -52,3 +52,7 @@ th {
 td {
   text-align: center;
 }
+
+label {
+  margin: 10px;
+}
