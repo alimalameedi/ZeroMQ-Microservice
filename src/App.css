@@ -56,3 +56,7 @@ td {
 label {
   margin: 10px;
 }
+
+.smallerInput {
+  width: 5em;
+}

@@ -10,13 +10,13 @@ function ConversionPage() {
             <option>META</option>
             <option>GOOG</option>
             </select>
-        <label># Of Stocks:</label>
-        <input></input>
-        <label>Total Value:</label><input placeholder="VALUE"></input><select>
+        <input type="number" class="smallerInput" min="1"></input>
+        <select>
             <option>$ - USD</option>
             <option>€ - EURO</option>
             <option>¥ - YEN</option>
-            </select>
+        </select>
+        <label></label><input type="submit" value="Show Value in Selected Currency"></input>
         </center>
         </div>
     );
