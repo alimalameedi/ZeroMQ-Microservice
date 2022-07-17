@@ -1,19 +1,81 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import { MdDeleteForever, MdEditNote } from "react-icons/md";
 
 function WatchPage() {
+
+    const data = 
+    [ 
+    {
+        "id": "1",
+        "name": "Facebook",
+        "symbol": "META",
+        "price": 182.15,
+        "quantity": 5,
+    },
+    {
+        "id": "2",
+        "name": "Facebook",
+        "symbol": "META",
+        "price": 182.15,
+        "quantity": 5,
+    },
+    {
+        "id": "3",
+        "name": "Facebook",
+        "symbol": "META",
+        "price": 182.15,
+        "quantity": 5,
+    },
+
+    ]
+    const [stocks, setStocks] = useState(data);
+    const [addFormData, setAddFormData] = useState({
+        name: '',
+        symbol: '',
+        price: '',
+        quantity: ''
+    });
+
+    const handleAddFormChange = (event) => {
+        event.preventDefault();
+
+        const fieldName = event.target.getAttribute('name');
+        const fieldValue = event.target.value;
+
+        const newFormData = { ...addFormData };
+        newFormData[fieldName] = fieldValue;
+
+        setAddFormData(newFormData);
+    }
+
+    const handleAddFormSubmit = (event) => {
+        event.preventDefault();
+
+        const newStock = {
+            name: addFormData.name,
+            symbol: addFormData.symbol,
+            price: addFormData.price,
+            quantity: addFormData.quantity
+        };
+
+        const newStocks = [...stocks, newStock];
+        setStocks(newStocks);
+    };
+
+    const handleDeleteClick = (stockId) => {
+        const newStocks = [...stocks];
+
+        const index = stocks.findIndex((stock) => stock.id === stockId);
+
+        newStocks.splice(index, 1);
+        setStocks(newStocks);
+    }
+
+
     return (
         <div>
             <h2>Stocks Watch</h2>
-            <center>
-            <label>Stock:</label><select>
-            <option>MSFT</option>
-            <option>META</option>
-            <option>GOOG</option>
-            </select>
-            <input type="number" class="smallerInput" min="1"></input>
-            <label></label><input type="submit" value="Add Stock"></input>
-            </center>
             <br></br>
             <table>
                 <tr>
@@ -24,32 +86,49 @@ function WatchPage() {
                 <th>Edit</th>
                 <th>Delete</th>
                 </tr>
-                <tr>
-                <td>Facebook</td>
-                <td>META</td>
-                <td>182.15</td>
-                <td>6</td>
-                <td><MdEditNote /></td>
-                <td><MdDeleteForever /></td>
-                </tr>
-                <tr>
-                <td>Google</td>
-                <td>GOOG</td>
-                <td>267.56</td>
-                <td>12</td>
-                <td><MdEditNote /></td>
-                <td><MdDeleteForever /></td>
-                </tr>
-                <tr>
-                <td>Microsoft</td>
-                <td>MSFT</td>
-                <td>231.82</td>
-                <td>3</td>
-                <td><MdEditNote /></td>
-                <td><MdDeleteForever /></td>
-                </tr>
-
+                {stocks.map((e) => (
+                    <tr>
+                        <td>{e.name}</td>
+                        <td>{e.symbol}</td>
+                        <td>{e.price}</td>
+                        <td>{e.quantity}</td>
+                        <td><MdEditNote /></td>
+                        <td><MdDeleteForever onClick={(event) => handleDeleteClick(event, e)} /></td>
+                    </tr>
+                ))}
             </table>
+            <center>
+            <h2>Add a Stock</h2>
+            <form onSubmit={handleAddFormSubmit}>
+                <input type="text"
+                name="name"
+                required="required"
+                placeholder="Enter a name..."
+                onChange={handleAddFormChange}
+                />
+
+                <input type="text"
+                name="symbol"
+                required="required"
+                placeholder="Enter a symbol..."
+                onChange={handleAddFormChange}
+                />
+
+                <input type="any"
+                name="price"
+                required="required"
+                placeholder="Enter a price..."
+                onChange={handleAddFormChange}
+                />
+                <input type="number"
+                name="quantity"
+                required="required"
+                placeholder="Enter a quantity..."
+                onChange={handleAddFormChange}
+                />
+                <button type="submit">Add Stock</button>
+            </form>
+            </center>
         </div>
     );
 }
