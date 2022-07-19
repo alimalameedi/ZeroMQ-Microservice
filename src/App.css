@@ -60,3 +60,8 @@ label {
 .smallerInput {
   width: 5em;
 }
+
+.instructionsList {
+  line-height: 1.5em;
+  padding: 2em;
+}

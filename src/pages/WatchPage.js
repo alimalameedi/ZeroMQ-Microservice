@@ -128,6 +128,15 @@ function WatchPage() {
                 />
                 <button type="submit">Add Stock</button>
             </form>
+            <ol className="instructionsList">
+                <li>The table above shows all stocks that you have chosen to keep track of. Follow instructions below, if needed.</li>
+                <br></br>
+                <li>1. Enter the stock name, symbol, price, and number of shares of the stock you'd like to add.</li>
+                <li>2. Click the 'Add Stock' button.</li>
+                <li>3. Click the 'edit' journal edit icon on any row of stock data you'd like to change.</li>
+                <li>4. Click the 'delete' trash can icon on any row of stock data you'd like to delete.</li>
+                <li></li>
+            </ol>
             </center>
         </div>
     );
