@@ -1,6 +1,15 @@
 import React from 'react';
+import data from "../data.json";
 
 function ConversionPage() {
+
+    console.log(data.currencyOneInformation);
+
+    function alertValue(value) {
+        alert("Your value is: " + value);
+    }
+
+
     return (
         <div>
         <center>
@@ -16,8 +25,10 @@ function ConversionPage() {
             <option>€ - EURO</option>
             <option>¥ - YEN</option>
         </select>
-        <label></label><input type="submit" value="Show Value in Selected Currency"></input>
-        <ol className="instructionsList">
+        <label></label><input onClick={alertValue(data.currencyOneInformation)}type="submit" value="Show Value in Selected Currency"></input>
+        <p>{data.currencyOneInformation}</p>
+        <p>{data.currencyTwo}</p>
+        <ul className="instructionsList" style={{listStyle:'none'}}>
                 <li>The input option above allows the user to input a stock and quantity of shares.</li>
                 <li>The user then converts the total value of that portfolio from USD to another selected currency. Follow instructions below, if needed.</li>
                 <br></br>
@@ -26,7 +37,7 @@ function ConversionPage() {
                 <li>3. Select the currency you'd like to convert the total portfolio evaluation (stock price x number of shares) to. The starting evaluation is in USD.</li>
                 <li>4. Click the 'Show Value in Selected Currency' button and that will show you the new value converted into your selected currency.</li>
                 <li></li>
-            </ol>
+            </ul>
         </center>
         </div>
     );

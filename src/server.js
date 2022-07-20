@@ -1,57 +1,50 @@
-require('dotenv').config({ path: 'variables.env' });
-    
-const express = require('express');
-const cors = require('cors');
-const Pusher = require('pusher');
-const NewsAPI = require('newsapi');
+const zmq = require("zeromq");
+const sock = zmq.socket('push');
+const secondSock = zmq.socket('pull');
 
-const app = express();
+const fileSend = 
+{ 
+    "currencyOne": 'USD',
+    "currencyTwo": 'EUR'
+};
 
-const pusher = new Pusher({
-  appId: process.env.PUSHER_APP_ID,
-  key: process.env.PUSHER_APP_KEY,
-  secret: process.env.PUSHER_APP_SECRET,
-  cluster: process.env.PUSHER_APP_CLUSTER,
-  encrypted: true,
-});
+let fileReceived = "Initial empty received file";
 
-const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
+run();
 
-const fetchNews = (searchTerm, pageNum) =>
-  newsapi.v2.topHeadlines({
-    q: searchTerm,
-    language: 'en',
-    page: pageNum,
-    pageSize: 5,
-  });
-
-app.use(cors());
-
-function updateFeed(topic) {
-  let counter = 2;
-  setInterval(() => {
-    fetchNews(topic, counter)
-      .then(response => {
-        pusher.trigger('news-channel', 'update-news', {
-          articles: response.articles,
-        });
-        counter += 1;
-      })
-      .catch(error => console.log(error));
-  }, 5000);
+async function run() {
+    sock.bind("tcp://127.0.0.1:7000");
+    console.log("Server is ready and listening on port 7000!");
+    console.log("Press any key to start sending the currency parameter data!");
+    process.stdin.once("data", send);
 }
 
-app.get('/live', (req, res) => {
-  const topic = 'stocks';
-  fetchNews(topic, 1)
-    .then(response => {
-      res.json(response.articles);
-      updateFeed(topic);
-    })
-    .catch(error => console.log(error));
-});
+async function send() {
+    console.log("About to send currency parameter data to user!");
+    sock.send(JSON.stringify(fileSend)); // sending currency information
+    console.log("Press to move onto run2!");
+    process.stdin.once("data", run2);
+}
 
-app.set('port', process.env.PORT || 5000);
-const server = app.listen(app.get('port'), () => {
-  console.log(`Express running → PORT ${server.address().port}`);
-});
+async function run2() {
+    secondSock.connect("tcp://127.0.0.1:7005");
+    console.log("Connected to server!");
+    secondSock.on('message', function(msg){
+        // console.log(msg.toString());
+        fileReceived = JSON.parse(msg.toString());
+    });
+    console.log("Press any key to print the information data!");
+    process.stdin.once("data", printData);
+}
+
+async function printData() {
+    console.log(fileReceived);
+    const fs = require('fs')
+    fs.writeFile('./data.json', JSON.stringify(fileReceived), err => {
+      if (err) {
+        console.error(err)
+        return
+      }
+      //file written successfully
+    })
+}

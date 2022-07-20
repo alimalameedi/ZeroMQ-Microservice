@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
 import { MdDeleteForever, MdEditNote } from "react-icons/md";
 
 function WatchPage() {
