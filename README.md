@@ -36,7 +36,7 @@ Instructions:
 
                In second terminal: 
                               cd src
-                              node worker.js --> "Connected to server! Server is ready and listening on port 7005! Press any key to process and start sending the                                     JSON!"
+                              node worker.js --> "Connected to server! Server is ready and listening on port 7005! Press any key to process and start sending the JSON!"
                               {"currencyOne":"USD","currencyTwo":"EUR"} --> information received from server and printed
                               g (random key) --> about to send JSON data to client!
                               !!!END OF WORKER TERMINAL OPERATIONS, NOW GO BACK TO WHERE YOU LEFT OFF IN SERVER TERMINAL!!!
