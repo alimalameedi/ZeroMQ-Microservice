@@ -5,10 +5,11 @@ Instructions:
       
         1) Open up two terminals, run 'node server.js' in one and 'node worker.js' in the second.
         
-        2) Once the worker is connected and the server is listening on port 7000, push any button the server terminal. This will send the JSON object with parameter                information you've requested to send.
+        2) Once the worker is connected and the server is listening on port 7000, push any button the server terminal. This will send the JSON object with parameter
+        information you've requested to send.
        
-        3) Then, you'll need to go to the worker and see if the information you sent was logged in the console. Then, you can push any button and hit enter on the worker 
-           terminal to process that information that was received and send it back to the server.
+        3) Then, you'll need to go to the worker and see if the information you sent was logged in the console. Then, you can push any button and hit enter on the
+           worker terminal to process that information that was received and send it back to the server.
            
         4) Once you do that, press any button on the server terminal and hit enter and it will write the JSON object information you received back to a local JSON file 
            on your file system to be exported and used wherever you'd like in your project.
@@ -20,20 +21,22 @@ Instructions:
                 In one terminal:
                                 cd src
                                 node server.js --> prints "Server is ready and listening on port 7000! Press any key to start sending the currency parameter data!"
-                                g (random key) --> About to send currency parameter data to user! Press to move onto run2 where you will receive the processed information! 
+                                g (random key) --> About to send currency parameter data to user! Press to move onto run2 where you will receive the processed
+                                information! 
                                 !!!!STOP HERE AND GO TO WORKER TERMINAL!!!
                                 g (random key) --> Connected to server! Press any key to print the requested data!
                                 g (random key) --> prints requested data below.
                                 {
-                                currencyOneInformation: 'The United States dollar, or U.S. dollar, is made up of 100 cents. It is represented by the symbol $ or US$ to                                 differentiate it from other dollar-based currencies. 
+                                currencyOneInformation: 'The United States dollar, or U.S. dollar, is made up of 100 cents. It is 
+                                represented by the symbol $ or US$ to differentiate it from other dollar-based currencies. 
                                 The U.S. dollar is considered a benchmark currency and is the most-used currency in transactions across the world.',
-                                currencyTwoInformation: 'The euro (symbol: €; code: EUR) is the official currency of 19 out of the 27 member 
+                                currencyTwoInformation: 'The euro (symbol: €; code: EUR) is the official currency of 19 out of the 27 member
                                 states of the European Union. This group of states is known as the eurozone or, officially, the euro area, and includes about 349                                       million citizens as of 2019. [12][13] The euro is divided into 100 cents.'
                                 }
 
                In second terminal: 
                               cd src
-                              node worker.js --> "Connected to server! Server is ready and listening on port 7005! Press any key to process and start sending the                                                        JSON!"
+                              node worker.js --> "Connected to server! Server is ready and listening on port 7005! Press any key to process and start sending the                                     JSON!"
                               {"currencyOne":"USD","currencyTwo":"EUR"} --> information received from server and printed
                               g (random key) --> about to send JSON data to client!
                               !!!END OF WORKER TERMINAL OPERATIONS, NOW GO BACK TO WHERE YOU LEFT OFF IN SERVER TERMINAL!!!
