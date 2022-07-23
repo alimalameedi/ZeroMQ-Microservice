@@ -16,7 +16,7 @@ Instructions:
         
         
         EXAMPLE CALLS: (the left side of the arrows below is the command written, the right side of the arrows is what prints as a result).
-        The server commands must run first in order to send the information to the worker, because these actions need to be in a precise order otherwise information           will not be sent as needed.
+        The server commands must run first in order to send the information to the worker, because these actions need to be in a precise order otherwise information will not be sent as needed.
         
                 In one terminal:
                                 cd src
