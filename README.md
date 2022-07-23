@@ -1,7 +1,3 @@
-Clear instructions for how to REQUEST data from the microservice you implemented. Include an example call.
-Clear instructions for how to RECEIVE data from the microservice you implemented
-UML sequence diagram showing how requesting and receiving data work. Make it detailed enough that your partner (and your grader) will understand
-
 The microservice that I've chosen to implement relies on using ZeroMQ as the main tool. Within ZeroMQ, we are utilizing a two-way push-pull pattern in order to allow for information to be sent from the server (push) to the worker (pull). When the information (in the form of a JSON object) is sent by my partner (the initial server) to me (the worker) (on one socket as the communication pipe), I am able to process his data on my end and prepare it for delivery. On a second socket, the roles are now reversed. The worker now becomes the server and prepares to send back the response JSON object to the previous server (the now worker - my partner). I would push my JSON response object onto the second socket and my partner would pull that information down. This would then complete the process and my partner would receive the appropriate date, write it to a local JSON file on their file system, and use that JSON file to add to their project / render as they need.
 
 Instructions:
