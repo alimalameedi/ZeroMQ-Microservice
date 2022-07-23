@@ -1,5 +1,7 @@
 REACT APPLICATION README INFORMATION:
 
+This application allows the user to create, watch, and convert stocks and shares to different currency types as well as simply create a watch list for the user to enjoy for personal use.
+
 
 MICROSERVICE README INFORMATION:
 
