@@ -23,10 +23,10 @@ Instructions:
                                 g (random key) --> About to send currency parameter data to user! Press to move onto run2 where you will receive the processed information! !!!!STOP HERE AND GO TO WORKER TERMINAL!!!
                                 g (random key) --> Connected to server! Press any key to print the requested data!
                                 g (random key) --> prints requested data below.
-{
+                                {
   currencyOneInformation: 'The United States dollar, or U.S. dollar, is made up of 100 cents. It is represented by the symbol $ or US$ to differentiate it from other dollar-based currencies. The U.S. dollar is considered a benchmark currency and is the most-used currency in transactions across the world.',
   currencyTwoInformation: 'The euro (symbol: €; code: EUR) is the official currency of 19 out of the 27 member states of the European Union. This group of states is known as the eurozone or, officially, the euro area, and includes about 349 million citizens as of 2019.[12][13] The euro is divided into 100 cents.'
-}
+                                }
 
                In second terminal: 
                               cd src
