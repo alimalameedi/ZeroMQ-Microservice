@@ -50,3 +50,8 @@ Instructions:
                               {"currencyOne":"USD","currencyTwo":"EUR"} --> information received from server and printed
                               g (random key) --> about to send JSON data to client!
                               !!!END OF WORKER TERMINAL OPERATIONS, NOW GO BACK TO WHERE YOU LEFT OFF IN SERVER TERMINAL!!!
+                              
+UML:
+![UML](https://user-images.githubusercontent.com/82230435/180621693-45f2075e-a1ac-427a-a555-c84ccd36d00f.jpg)
+
+
