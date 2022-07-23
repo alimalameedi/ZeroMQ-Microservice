@@ -2,6 +2,7 @@ The microservice that I've chosen to implement relies on using ZeroMQ as the mai
 
 Instructions:
       REQUEST & RECEIVE INSTRUCTIONS:
+      
         1) Open up two terminals, run 'node server.js' in one and 'node worker.js' in the second.
         
         2) Once the worker is connected and the server is listening on port 7000, push any button the server terminal. This will send the JSON object with parameter                information you've requested to send.
