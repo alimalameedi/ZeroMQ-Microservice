@@ -9,11 +9,20 @@ Instructions:
         information you've requested to send.
        
         3) Then, you'll need to go to the worker and see if the information you sent was logged in the console. Then, you can push any button and hit enter on the
-           worker terminal to process that information that was received and send it back to the server.
+           worker terminal to process that JSON information that was received and send a JSON object with the new requested information back to the server.
            
-        4) Once you do that, press any button on the server terminal and hit enter and it will write the JSON object information you received back to a local JSON file 
-           on your file system to be exported and used wherever you'd like in your project.
+        4) Once you do that, press any button on the server terminal and hit enter and it will write the new JSON object information you received back to a local JSON file on your file system to be exported and used wherever you'd like in your project.
         
+         Request:
+        - Starts as Server (switches to Worker later)
+        - Will receive JSON object from the worker after sending a JSON object to the worker for processing.
+        - If the received JSON is empty, an error will be thrown that no data was found.
+        
+        Receive:
+          - Starts as Worker (switches to Server later)
+          - Will receive JSON object from the server and send a JSON object back to the server
+          - If the JSON object is empty, an error will be thrown suggesting that there was no information sent.
+          - If the JSON object is not empty, it will be processed accordingly and matched to internal data (if the information is not found, an error will be thrown that there is incorrect data).
         
         EXAMPLE CALLS: (the left side of the arrows below is the command written, the right side of the arrows is what prints as a result).
         The server commands must run first in order to send the information to the worker, because these actions need to be in a precise order otherwise information will not be sent as needed.
