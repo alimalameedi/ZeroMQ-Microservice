@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import data from "../data.json";
+import React, { useState } from 'react';
 import axios from "axios";
+
+const receivedData = require('../data.json');
 
 function ConversionPage() {
 
@@ -8,9 +9,10 @@ function ConversionPage() {
     const [price, setPrice] = useState(0);
     const [quantity, setQuantity] = useState(0);
     const [toCurrency, setToCurrency] = useState("");
-    const [setData, data] = useState({});
 
-    const priceConversion = { 'MSFT': 182.15, 'META': 212.62, 'GOOG': 161.11 }
+    const priceConversion = { 'MSFT': 182.15, 'META': 212.62, 'GOOG': 161.11, 
+                              'AMZN': 2523.2, 'AAPL': 168.33, 'DIS': 89.98, 
+                              'MA': 132.33, 'TSLA': 1064.5, 'COST': 101.1, 'NFLX': 136.87 }
 
     const handleSubmit2 = () => {
         const resultData = { 'name': name, 'price': priceConversion[name], 'quantity': quantity, 'toCurrency': toCurrency};
@@ -19,26 +21,9 @@ function ConversionPage() {
         .catch(err => console.log(err.data))
     }
 
-    const handleSubmit = async () => {
-        const resultData = { 'name': name, 'price': priceConversion[name], 'quantity': quantity, 'toCurrency': toCurrency};
-        console.log(JSON.stringify(resultData));
-        await fetch('/', {
-            method: "POST",
-            mode: 'no-cors',
-            headers: {
-              'Content-type': 'application/json'
-            },
-            body: JSON.stringify(resultData)
-          });
+    function alertValue(receivedData) {
+        alert("The value of your " + name + " stock is: " + receivedData.value + " in the " + receivedData.nameOfCurrency + " currency.");
     }
-
-    function alertValue(name, quantity, toCurrency) {
-       console.log("Your name is:" + name);
-       console.log("Your price is:" + priceConversion[name]);
-       console.log("Your quantity is:" + quantity);
-       console.log("Your currency conversion is:" + toCurrency);
-    }
-
 
     return (
         <div>
@@ -51,17 +36,30 @@ function ConversionPage() {
             <option>MSFT</option>
             <option>META</option>
             <option>GOOG</option>
+            <option>AMZN</option>
+            <option>AAPL</option>
+            <option>DIS</option>
+            <option>MA</option>
+            <option>TSLA</option>
+            <option>COST</option>
+            <option>NFLX</option>
             </select>
         <input type="number" name="quantity" value={quantity} onChange={(e) => (setQuantity(parseInt(e.target.value)))} class="smallerInput" min="1"></input>
         <select value={toCurrency} onChange={(e) => (setToCurrency(e.target.value))}>
             <option>USD</option>
             <option>EURO</option>
             <option>YEN</option>
+            <option>AUD</option>
+            <option>CAD</option> 
+            <option>KWD</option>
+            <option>INR</option>
+            <option>JOD</option>
+            <option>BHD</option>
+            <option>GBP</option>
+            <option>OMR</option>
         </select>
         <label></label><input onClick={()=>handleSubmit2()} type="submit" value="Write JSON"></input>
-        <label></label><input onClick={()=>alertValue(name, quantity, toCurrency)} type="submit" value="Show Value in Selected Currency"></input>
-        <p>{data.currencyOneInformation}</p>
-        <p>{data.currencyTwo}</p>
+        <label></label><input onClick={()=>alertValue(receivedData)} type="submit" value="Show Value in Selected Currency"></input>
         <ul className="instructionsList" style={{listStyle:'none'}}>
                 <li>The input option above allows the user to input a stock and quantity of shares.</li>
                 <li>The user then converts the total value of that portfolio from USD to another selected currency. Follow instructions below, if needed.</li>

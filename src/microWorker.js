@@ -4,8 +4,8 @@ const secondSock = zmq.socket('push');
 
 const fileReturn = 
 { 
-    "currencyOneInformation": 'The United States dollar, or U.S. dollar, is made up of 100 cents. It is represented by the symbol $ or US$ to differentiate it from other dollar-based currencies. The U.S. dollar is considered a benchmark currency and is the most-used currency in transactions across the world.',
-    "currencyTwoInformation": 'The euro (symbol: €; code: EUR) is the official currency of 19 out of the 27 member states of the European Union. This group of states is known as the eurozone or, officially, the euro area, and includes about 349 million citizens as of 2019.[12][13] The euro is divided into 100 cents.'
+    "value": 1,
+    "nameOfCurrency": ""
 };
 
 run();
@@ -15,6 +15,61 @@ async function run() {
     sock.connect("tcp://127.0.0.1:7000");
     console.log("Connected to server!");
     sock.on('message', function(msg){
+        fileReturn["value"] = (JSON.parse(msg.toString()).price * JSON.parse(msg.toString()).quantity);
+        switch(JSON.parse(msg.toString()).toCurrency) {
+            case 'EURO':
+                fileReturn["value"] *= 0.98;
+                fileReturn["nameOfCurrency"] = 'European Euro';
+                break;
+            
+            case 'YEN':
+                fileReturn["value"] *= 133.34;
+                fileReturn["nameOfCurrency"] = 'Japanese Yen';
+                break;
+
+            case 'AUD':
+                fileReturn["value"] *= 0.70;
+                fileReturn["nameOfCurrency"] = 'Australian Dollar';
+                break;
+
+            case 'CAD':
+                fileReturn["value"] *= 0.79;
+                fileReturn["nameOfCurrency"] = 'Canadian Dollar';
+                break;
+            
+            case 'KWD':
+                fileReturn["value"] *= 3.30;
+                fileReturn["nameOfCurrency"] = 'Kuwaiti Dinar';
+                break;
+
+            case 'INR':
+                fileReturn["value"] *= 0.013;
+                fileReturn["nameOfCurrency"] = 'Indian Rupee';
+                break;
+            
+            case 'JOD':
+                fileReturn["value"] *= 1.41;
+                fileReturn["nameOfCurrency"] = 'Jordanian Dollar';
+                break;
+            
+            case 'BHD':
+                fileReturn["value"] *= 2.65;
+                fileReturn["nameOfCurrency"] = 'Bahranian Dinar';
+                break;
+
+            case 'GBP':
+                fileReturn["value"] *= 1.22;
+                fileReturn["nameOfCurrency"] = 'United Kingdom Sterling Pound';
+                break;
+
+            case 'OMR':
+                fileReturn["value"] *= 2.60;
+                fileReturn["nameOfCurrency"] = 'Omani Rial';
+                break;
+        
+            default:
+                console.log("There's no match!")
+        }
         console.log(msg.toString());
     });
 }

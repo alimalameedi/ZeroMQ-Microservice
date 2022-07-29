@@ -1,13 +1,7 @@
 const zmq = require("zeromq");
 const sock = zmq.socket('push');
 const secondSock = zmq.socket('pull');
-const fileSend222 = require('./info.json')
-
-const fileSend = 
-{ 
-    "currencyOne": 'USD',
-    "currencyTwo": 'EUR'
-};
+const fileSend = require('./info.json')
 
 let fileReceived = "Initial empty received file";
 
@@ -22,7 +16,7 @@ async function run() {
 
 async function send() {
     console.log("About to send currency parameter JSON data to user!");
-    sock.send(JSON.stringify(fileSend222)); // sending currency information
+    sock.send(JSON.stringify(fileSend)); // sending currency information
     console.log("Press to move onto run2!");
     process.stdin.once("data", run2);
 }

@@ -13,7 +13,7 @@ app.use(express.urlencoded({ extended: false }));
 
 app.post('/', function (req, res) {
   // res.send(req.body);
-  console.log("HEY!", req.body);
+  console.log(req.body);
   usersData = req.body;
   fs.writeFile('../src/info.json', JSON.stringify(usersData), err => {
     if (err) {
