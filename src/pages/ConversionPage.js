@@ -1,12 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import data from "../data.json";
+import axios from "axios";
 
 function ConversionPage() {
 
-    console.log(data.currencyOneInformation);
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState(0);
+    const [quantity, setQuantity] = useState(0);
+    const [toCurrency, setToCurrency] = useState("");
+    const [setData, data] = useState({});
 
-    function alertValue(value) {
-        alert("Your value is: " + value);
+    const priceConversion = { 'MSFT': 182.15, 'META': 212.62, 'GOOG': 161.11 }
+
+    const handleSubmit2 = () => {
+        const resultData = { 'name': name, 'price': priceConversion[name], 'quantity': quantity, 'toCurrency': toCurrency};
+        axios.post("/", resultData)
+        .then(res => console.log("Data send!"))
+        .catch(err => console.log(err.data))
+    }
+
+    const handleSubmit = async () => {
+        const resultData = { 'name': name, 'price': priceConversion[name], 'quantity': quantity, 'toCurrency': toCurrency};
+        console.log(JSON.stringify(resultData));
+        await fetch('/', {
+            method: "POST",
+            mode: 'no-cors',
+            headers: {
+              'Content-type': 'application/json'
+            },
+            body: JSON.stringify(resultData)
+          });
+    }
+
+    function alertValue(name, quantity, toCurrency) {
+       console.log("Your name is:" + name);
+       console.log("Your price is:" + priceConversion[name]);
+       console.log("Your quantity is:" + quantity);
+       console.log("Your currency conversion is:" + toCurrency);
     }
 
 
@@ -14,18 +44,22 @@ function ConversionPage() {
         <div>
         <center>
         <h2>Stock Value Conversion</h2>
-        <label>Stock:</label><select>
+        <label>Stock:</label><select value={name} onChange={(e) => {
+            (setName(e.target.value))
+            (setPrice(priceConversion[name]))
+            }}>
             <option>MSFT</option>
             <option>META</option>
             <option>GOOG</option>
             </select>
-        <input type="number" class="smallerInput" min="1"></input>
-        <select>
-            <option>$ - USD</option>
-            <option>€ - EURO</option>
-            <option>¥ - YEN</option>
+        <input type="number" name="quantity" value={quantity} onChange={(e) => (setQuantity(parseInt(e.target.value)))} class="smallerInput" min="1"></input>
+        <select value={toCurrency} onChange={(e) => (setToCurrency(e.target.value))}>
+            <option>USD</option>
+            <option>EURO</option>
+            <option>YEN</option>
         </select>
-        <label></label><input onClick={alertValue(data.currencyOneInformation)}type="submit" value="Show Value in Selected Currency"></input>
+        <label></label><input onClick={()=>handleSubmit2()} type="submit" value="Write JSON"></input>
+        <label></label><input onClick={()=>alertValue(name, quantity, toCurrency)} type="submit" value="Show Value in Selected Currency"></input>
         <p>{data.currencyOneInformation}</p>
         <p>{data.currencyTwo}</p>
         <ul className="instructionsList" style={{listStyle:'none'}}>

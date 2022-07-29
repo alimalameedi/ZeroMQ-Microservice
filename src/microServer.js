@@ -1,6 +1,7 @@
 const zmq = require("zeromq");
 const sock = zmq.socket('push');
 const secondSock = zmq.socket('pull');
+const fileSend222 = require('./info.json')
 
 const fileSend = 
 { 
@@ -15,13 +16,13 @@ run();
 async function run() {
     sock.bind("tcp://127.0.0.1:7000");
     console.log("Server is ready and listening on port 7000!");
-    console.log("Press any key to start sending the currency parameter data!");
+    console.log("Press any key to start sending the currency parameter JSON data!");
     process.stdin.once("data", send);
 }
 
 async function send() {
-    console.log("About to send currency parameter data to user!");
-    sock.send(JSON.stringify(fileSend)); // sending currency information
+    console.log("About to send currency parameter JSON data to user!");
+    sock.send(JSON.stringify(fileSend222)); // sending currency information
     console.log("Press to move onto run2!");
     process.stdin.once("data", run2);
 }
@@ -33,7 +34,7 @@ async function run2() {
         // console.log(msg.toString());
         fileReceived = JSON.parse(msg.toString());
     });
-    console.log("Press any key to print the information data!");
+    console.log("Press any key to print the JSON data!");
     process.stdin.once("data", printData);
 }
 
