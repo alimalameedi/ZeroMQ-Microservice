@@ -1,7 +1,7 @@
 const zmq = require("zeromq");
 const sock = zmq.socket('push');
 const secondSock = zmq.socket('pull');
-const fileSend = require('./info.json')
+const fileSend = require('../src/info.json')
 
 let fileReceived = "Initial empty received file";
 
