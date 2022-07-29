@@ -38,11 +38,15 @@ p {
   text-align: center;
 }
 
-table {
+.tableOne {
   border: 2px solid forestgreen;
   width: 800px;
   height: 200px;
   margin: auto auto 0;
+}
+
+.tableTwo {
+  border: 2px solid forestgreen;
 }
   
 th {

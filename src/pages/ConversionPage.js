@@ -70,6 +70,53 @@ function ConversionPage() {
                 <li>4. Click the 'Show Value in Selected Currency' button and that will show you the new value converted into your selected currency.</li>
                 <li></li>
             </ul>
+            <table class="tableTwo">
+                <caption>Symbol to Name Conversion Key</caption>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>MSFT</td>
+                    <td>Microsoft</td>
+                </tr>
+                <tr>
+                    <td>META</td>
+                    <td>Facebook</td>
+                </tr>
+                <tr>
+                    <td>GOOG</td>
+                    <td>Google</td>
+                </tr>
+                <tr>
+                    <td>AMZN</td>
+                    <td>Amazon</td>
+                </tr>
+                <tr>
+                    <td>DIS</td>
+                    <td>Disney</td>
+                </tr>
+                <tr>
+                    <td>AAPL</td>
+                    <td>Apple</td>
+                </tr>
+                <tr>
+                    <td>NFLX</td>
+                    <td>Netflix</td>
+                </tr>
+                <tr>
+                    <td>MA</td>
+                    <td>Mastercard</td>
+                </tr>
+                <tr>
+                    <td>TSLA</td>
+                    <td>Tesla</td>
+                </tr>
+                <tr>
+                    <td>COST</td>
+                    <td>COSTCO</td>
+                </tr>
+            </table>
         </center>
         </div>
     );

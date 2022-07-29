@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { MdDeleteForever, MdEditNote } from "react-icons/md";
+import { MdDeleteForever } from "react-icons/md";
 
 function WatchPage() {
 
@@ -71,18 +71,16 @@ function WatchPage() {
         setStocks(newStocks);
     }
 
-
     return (
         <div>
             <h2>Stocks Watch</h2>
             <br></br>
-            <table>
+            <table className="tableOne">
                 <tr>
                 <th>Name</th>
                 <th>Symbol</th>
                 <th>Price</th>
                 <th># Of Shares</th>
-                <th>Edit</th>
                 <th>Delete</th>
                 </tr>
                 {stocks.map((e) => (
@@ -91,7 +89,6 @@ function WatchPage() {
                         <td>{e.symbol}</td>
                         <td>{e.price}</td>
                         <td>{e.quantity}</td>
-                        <td><MdEditNote /></td>
                         <td><MdDeleteForever onClick={(event) => handleDeleteClick(event, e)} /></td>
                     </tr>
                 ))}
@@ -127,15 +124,62 @@ function WatchPage() {
                 />
                 <button type="submit">Add Stock</button>
             </form>
-            <ol className="instructionsList">
+            <ol className="instructionsList" style={{listStyle: 'none'}}>
                 <li>The table above shows all stocks that you have chosen to keep track of. Follow instructions below, if needed.</li>
                 <br></br>
                 <li>1. Enter the stock name, symbol, price, and number of shares of the stock you'd like to add.</li>
                 <li>2. Click the 'Add Stock' button.</li>
-                <li>3. Click the 'edit' journal edit icon on any row of stock data you'd like to change.</li>
+                {/* <li>3. Click the 'edit' journal edit icon on any row of stock data you'd like to change.</li> */}
                 <li>4. Click the 'delete' trash can icon on any row of stock data you'd like to delete.</li>
                 <li></li>
             </ol>
+            <table class="tableTwo">
+                <caption>Symbol to Name Conversion Key</caption>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                </tr>
+                <tr>
+                    <td>MSFT</td>
+                    <td>Microsoft</td>
+                </tr>
+                <tr>
+                    <td>META</td>
+                    <td>Facebook</td>
+                </tr>
+                <tr>
+                    <td>GOOG</td>
+                    <td>Google</td>
+                </tr>
+                <tr>
+                    <td>AMZN</td>
+                    <td>Amazon</td>
+                </tr>
+                <tr>
+                    <td>DIS</td>
+                    <td>Disney</td>
+                </tr>
+                <tr>
+                    <td>AAPL</td>
+                    <td>Apple</td>
+                </tr>
+                <tr>
+                    <td>NFLX</td>
+                    <td>Netflix</td>
+                </tr>
+                <tr>
+                    <td>MA</td>
+                    <td>Mastercard</td>
+                </tr>
+                <tr>
+                    <td>TSLA</td>
+                    <td>Tesla</td>
+                </tr>
+                <tr>
+                    <td>COST</td>
+                    <td>Costco</td>
+                </tr>
+            </table>
             </center>
         </div>
     );
