@@ -14,7 +14,7 @@ function ConversionPage() {
                               'AMZN': 2523.2, 'AAPL': 168.33, 'DIS': 89.98, 
                               'MA': 132.33, 'TSLA': 1064.5, 'COST': 101.1, 'NFLX': 136.87 }
 
-    const handleSubmit2 = () => {
+    const handleSubmit = () => {
         const resultData = { 'name': name, 'price': priceConversion[name], 'quantity': quantity, 'toCurrency': toCurrency};
         axios.post("/", resultData)
         .then(res => console.log("Data send!"))
@@ -58,7 +58,7 @@ function ConversionPage() {
             <option>GBP</option>
             <option>OMR</option>
         </select>
-        <label></label><input onClick={()=>handleSubmit2()} type="submit" value="Write JSON"></input>
+        <label></label><input onClick={()=>handleSubmit()} type="submit" value="Write JSON"></input>
         <label></label><input onClick={()=>alertValue(receivedData)} type="submit" value="Show Value in Selected Currency"></input>
         <ul className="instructionsList" style={{listStyle:'none'}}>
                 <li>The input option above allows the user to input a stock and quantity of shares.</li>

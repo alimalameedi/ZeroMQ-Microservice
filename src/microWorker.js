@@ -1,3 +1,5 @@
+// Code reference: https://zeromq.org/get-started/ 
+
 const zmq = require("zeromq");
 const sock = zmq.socket('pull');
 const secondSock = zmq.socket('push');
@@ -70,7 +72,6 @@ async function run() {
             default:
                 console.log("There's no match!")
         }
-        console.log(msg.toString());
     });
 }
 
