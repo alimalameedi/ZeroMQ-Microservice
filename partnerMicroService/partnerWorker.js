@@ -1,3 +1,5 @@
+// Code reference: https://zeromq.org/get-started/ 
+
 const zmq = require("zeromq");
 const sock = zmq.socket('pull');
 const secondSock = zmq.socket('push');
