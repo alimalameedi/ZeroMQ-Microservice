@@ -78,7 +78,7 @@ async function run() {
 async function run2() {
     secondSock.bind("tcp://127.0.0.1:7005");
     console.log("Server is ready and listening on port 7005!");
-    console.log("Press any key to start sending the JSON");
+    console.log("Press any key to start sending the JSON object with the value of the portfolio in the requested currency.");
     process.stdin.once("data", send);
 }
 

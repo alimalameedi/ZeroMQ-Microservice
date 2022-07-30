@@ -1,3 +1,8 @@
+// Code References: https://www.geeksforgeeks.org/axios-in-react-a-guide-for-beginners/
+// Code References: https://nodejs.dev/learn/the-nodejs-fs-module
+// Code Reference: https://www.youtube.com/watch?v=w3vs4a03y3I
+
+
 const express = require("express");
 const fs = require('fs');
 const axios = require('axios');

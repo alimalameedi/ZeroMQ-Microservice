@@ -12,13 +12,13 @@ run();
 async function run() {
     sock.bind("tcp://127.0.0.1:7000");
     console.log("Server is ready and listening on port 7000!");
-    console.log("Press any key to start sending the currency parameter JSON data!");
+    console.log("Press any key to start sending the stock & currency parameter JSON data!");
     process.stdin.once("data", send);
 }
 
 async function send() {
-    console.log("About to send currency parameter JSON data to user!");
-    sock.send(JSON.stringify(fileSend)); // sending currency information
+    console.log("About to send stock & currency parameter JSON data to user!");
+    sock.send(JSON.stringify(fileSend)); // sending stock/currency information
     console.log("Press to move onto run2!");
     process.stdin.once("data", run2);
 }
