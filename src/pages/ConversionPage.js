@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
 
-const receivedData = require('../data.json');
-
 function ConversionPage() {
 
     const [name, setName] = useState("");
@@ -14,15 +12,22 @@ function ConversionPage() {
                               'AMZN': 2523.2, 'AAPL': 168.33, 'DIS': 89.98, 
                               'MA': 132.33, 'TSLA': 1064.5, 'COST': 101.1, 'NFLX': 136.87 }
 
-    const handleSubmit = () => {
+
+    function alertValue() {
+
         const resultData = { 'name': name, 'price': priceConversion[name], 'quantity': quantity, 'toCurrency': toCurrency};
+
         axios.post("/", resultData)
         .then(res => console.log("Data send!"))
         .catch(err => console.log(err.data))
-    }
 
-    function alertValue(receivedData) {
-        alert("The value of your " + name + " stock is: " + receivedData.value + " in the " + receivedData.nameOfCurrency + " currency.");
+        const receivedData = require('../data.json');
+        
+        const answer = window.prompt("Are you sure you want to send your data? Enter 'y' for yes and 'n' for no.")
+
+        if (answer.toLowerCase() === 'y') {
+            alert("The value of your " + name + " stock is: " + receivedData.value + " in the " + receivedData.nameOfCurrency + " currency.");
+        }
     }
 
     return (
@@ -58,8 +63,8 @@ function ConversionPage() {
             <option>GBP</option>
             <option>OMR</option>
         </select>
-        <label></label><input onClick={()=>handleSubmit()} type="submit" value="Write JSON"></input>
-        <label></label><input onClick={()=>alertValue(receivedData)} type="submit" value="Show Value in Selected Currency"></input>
+        <label></label><input onClick={()=>alertValue()} type="submit" value="Show Value in Selected Currency"></input>
+        {/* <label>The value of your {name} stock is: {receivedData.value} in the {receivedData.nameOfCurrency} currency.</label> */}
         <ul className="instructionsList" style={{listStyle:'none'}}>
                 <li>The input option above allows the user to input a stock and quantity of shares.</li>
                 <li>The user then converts the total value of that portfolio from USD to another selected currency. Follow instructions below, if needed.</li>

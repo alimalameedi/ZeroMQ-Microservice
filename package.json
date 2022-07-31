@@ -15,6 +15,7 @@
     "filesaver.js-npm": "^1.0.1",
     "fs": "0.0.1-security",
     "newsapi": "^2.4.1",
+    "nodemon": "^2.0.19",
     "piesocket-js": "^3.0.3",
     "piesocket-nodejs": "^1.1.0",
     "pusher": "^5.1.1-beta",

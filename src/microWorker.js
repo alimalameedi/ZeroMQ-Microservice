@@ -30,42 +30,42 @@ async function run() {
                 break;
 
             case 'AUD':
-                fileReturn["value"] *= 0.70;
+                fileReturn["value"] *= 1.43;
                 fileReturn["nameOfCurrency"] = 'Australian Dollar';
                 break;
 
             case 'CAD':
-                fileReturn["value"] *= 0.79;
+                fileReturn["value"] *= 1.28;
                 fileReturn["nameOfCurrency"] = 'Canadian Dollar';
                 break;
             
             case 'KWD':
-                fileReturn["value"] *= 3.30;
+                fileReturn["value"] *= 0.31;
                 fileReturn["nameOfCurrency"] = 'Kuwaiti Dinar';
                 break;
 
             case 'INR':
-                fileReturn["value"] *= 0.013;
+                fileReturn["value"] *= 79.20;
                 fileReturn["nameOfCurrency"] = 'Indian Rupee';
                 break;
             
             case 'JOD':
-                fileReturn["value"] *= 1.41;
+                fileReturn["value"] *= 0.71;
                 fileReturn["nameOfCurrency"] = 'Jordanian Dollar';
                 break;
             
             case 'BHD':
-                fileReturn["value"] *= 2.65;
+                fileReturn["value"] *= 0.38;
                 fileReturn["nameOfCurrency"] = 'Bahranian Dinar';
                 break;
 
             case 'GBP':
-                fileReturn["value"] *= 1.22;
+                fileReturn["value"] *= 0.82;
                 fileReturn["nameOfCurrency"] = 'United Kingdom Sterling Pound';
                 break;
 
             case 'OMR':
-                fileReturn["value"] *= 2.60;
+                fileReturn["value"] *= 0.38;
                 fileReturn["nameOfCurrency"] = 'Omani Rial';
                 break;
         
