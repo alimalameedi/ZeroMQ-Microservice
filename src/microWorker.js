@@ -2,7 +2,6 @@
 
 const zmq = require("zeromq");
 const sock = zmq.socket('pull');
-const secondSock = zmq.socket('push');
 
 const fileReturn = 
 { 
@@ -10,12 +9,12 @@ const fileReturn =
     "nameOfCurrency": ""
 };
 
-run();
-run2();
+setTimeout(run, 1000);
 
 async function run() {
     sock.connect("tcp://127.0.0.1:7000");
     console.log("Connected to server!");
+    console.log("Received stock & currency information!")
     sock.on('message', function(msg){
         fileReturn["value"] = (JSON.parse(msg.toString()).price * JSON.parse(msg.toString()).quantity);
         switch(JSON.parse(msg.toString()).toCurrency) {
@@ -71,18 +70,16 @@ async function run() {
         
             default:
                 console.log("There's no match!")
-        }
-    });
 }
-
-async function run2() {
-    secondSock.bind("tcp://127.0.0.1:7005");
-    console.log("Server is ready and listening on port 7005!");
-    console.log("Press any key to start sending the JSON object with the value of the portfolio in the requested currency.");
-    process.stdin.once("data", send);
-}
-
-async function send() {
-    console.log("About to send JSON data to client!");
-    secondSock.send(JSON.stringify(fileReturn)); // sending JSON data back
+console.log("Sending/writing data back to server!")
+console.log(fileReturn);
+const fs = require('fs')
+fs.writeFile('./data.json', JSON.stringify(fileReturn), err => {
+if (err) {
+    console.error(err)
+    return
+    }
+});
+      //file written successfully
+    })
 }

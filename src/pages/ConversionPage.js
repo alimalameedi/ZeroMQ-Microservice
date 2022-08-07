@@ -15,19 +15,23 @@ function ConversionPage() {
 
     function alertValue() {
 
+        const receivedData = require('../data.json');
+        alert("The value of your " + name + " stock is: " + receivedData.value + " in the " + receivedData.nameOfCurrency + " currency.");
+        
+    }
+
+    function postData() {
+
         const resultData = { 'name': name, 'price': priceConversion[name], 'quantity': quantity, 'toCurrency': toCurrency};
 
         axios.post("/", resultData)
         .then(res => console.log("Data send!"))
         .catch(err => console.log(err.data))
+    }
 
-        const receivedData = require('../data.json');
-        
-        const answer = window.prompt("Are you sure you want to send your data? Enter 'y' for yes and 'n' for no.")
-
-        if (answer.toLowerCase() === 'y') {
-            alert("The value of your " + name + " stock is: " + receivedData.value + " in the " + receivedData.nameOfCurrency + " currency.");
-        }
+    function postAndAlert() {
+        postData();
+        setTimeout(alertValue, 3000);
     }
 
     return (
@@ -50,7 +54,7 @@ function ConversionPage() {
             <option>NFLX</option>
             </select>
         <input type="number" name="quantity" value={quantity} onChange={(e) => (setQuantity(parseInt(e.target.value)))} class="smallerInput" min="1"></input>
-        <select value={toCurrency} onChange={(e) => (setToCurrency(e.target.value))}>
+        <select value={toCurrency} onChange={(e) => setToCurrency(e.target.value)}>
             <option>USD</option>
             <option>EURO</option>
             <option>YEN</option>
@@ -63,7 +67,7 @@ function ConversionPage() {
             <option>GBP</option>
             <option>OMR</option>
         </select>
-        <label></label><input onClick={()=>alertValue()} type="submit" value="Show Value in Selected Currency"></input>
+        <label></label><input onClick={()=>postAndAlert()} type="submit" value="Show Value in Selected Currency"></input>
         {/* <label>The value of your {name} stock is: {receivedData.value} in the {receivedData.nameOfCurrency} currency.</label> */}
         <ul className="instructionsList" style={{listStyle:'none'}}>
                 <li>The input option above allows the user to input a stock and quantity of shares.</li>
